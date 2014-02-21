@@ -1,0 +1,65 @@
+﻿<div class="row">
+    <div class="eight columns">
+        <h2>
+            {{entityName}}s&nbsp;<a href="" ng-click="addR()">
+                <img src="@Url.Content("~/Content/images/icons/file_add_24x24.png")" alt="add department" title="add department"/></a></h2>
+    </div>
+</div>
+<div class="row">
+    <div class="six columns">
+        <table id="lookupTable">
+        </table>
+    </div>
+</div>
+<div class="reveal-modal small" id="confirmModal">
+    <div class="row">
+        <div class="twelve columns">
+            <h3>
+                Confirm Delete</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <p>
+                {{toDelete[0].Name}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <input type="button" class="medium button" value="Delete" ng-click="confirmDelete()" />
+            <input type="button" class="medium secondary button " value="nevermind" ng-click="cancelDelete()" />
+        </div>
+    </div>
+</div>
+<div class="reveal-modal medium" id="formModal">
+    <form name="eForm" ng-submit="saveChanges()">
+    <div class="row">
+        <div class="twelve columns">
+            <h3>
+                {{modalTitle}}</h3>
+            <input type="hidden" name="eId" id="eId" ng-model="eId" />
+            @Html.AntiForgeryToken()
+        </div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <span style="color: Red;">{{errors}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="two columns">
+            <label for="eName" class="inline">
+                Name</label></div>
+        <div class="ten columns">
+            <input type="text" id="eName" name="eName" ng-model="eName" required ng-class="{error: eForm.eName.$dirty &&  eForm.eName.$error.required}" /><small
+                ng-show="eForm.eName.$dirty &&  eForm.eName.$error.required" class="error">field
+                is required</small></div>
+    </div>
+    <div class="row">
+        <div class="twelve columns">
+            <input type="submit" class="medium button" value="save" />
+            <input id="closeModal" type="button" class="medium secondary button " value="nevermind" />
+        </div>
+    </div>
+    </form>
+</div>
